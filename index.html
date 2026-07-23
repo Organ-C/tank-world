@@ -825,8 +825,8 @@ function draw() {
     ctx.fillText('TANK WORLD', W/2, H/2 + 5);
     ctx.fillStyle = '#f0a500';
     ctx.font = 'bold 16px "Courier New", monospace';
-    ctx.fillText('按 空格键 开始游戏', W/2, H/2 + 50);
-    ctx.fillText('Press SPACE to Start', W/2, H/2 + 75);
+    ctx.fillText('按 空格键 或 点击画面 开始', W/2, H/2 + 50);
+    ctx.fillText('Press SPACE or Click to Start', W/2, H/2 + 75);
   }
 
   // 暂停
@@ -851,6 +851,14 @@ function gameLoop() {
 }
 
 // --- 事件处理 ---
+// 点击画面开始
+canvas.addEventListener('click', () => {
+  if (gameState === STATE.MENU) {
+    initLevel();
+    updateUI();
+  }
+});
+
 document.addEventListener('keydown', e => {
   keys[e.key.toLowerCase()] = true;
   keys[e.key] = true; // for space/arrows
